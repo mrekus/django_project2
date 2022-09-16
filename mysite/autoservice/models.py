@@ -42,8 +42,8 @@ class Uzsakymas(models.Model):
     automobilis_id = models.ForeignKey("Automobilis",
                                        on_delete=models.SET_NULL,
                                        null=True)
-    suma = models.CharField("Suma",
-                            max_length=200)
+    suma = models.FloatField("Suma",
+                             max_length=200)
 
     class Meta:
         verbose_name_plural = 'Uzsakymai'
@@ -59,10 +59,10 @@ class UzsakymoEilute(models.Model):
     uzsakymas_id = models.ForeignKey("Uzsakymas",
                                      on_delete=models.SET_NULL,
                                      null=True)
-    kiekis = models.CharField("Kiekis",
+    kiekis = models.IntegerField("Kiekis",
+                                 max_length=200)
+    kaina = models.FloatField("Kaina",
                               max_length=200)
-    kaina = models.CharField("Kaina",
-                             max_length=200)
 
     class Meta:
         verbose_name_plural = 'Uzsakymo eilutes'
@@ -74,7 +74,7 @@ class UzsakymoEilute(models.Model):
 class Paslauga(models.Model):
     pavadinimas = models.CharField("Pavadinimas",
                                    max_length=200)
-    kaina = models.IntegerField("Kaina")
+    kaina = models.FloatField("Kaina")
 
     class Meta:
         verbose_name_plural = 'Paslaugos'
