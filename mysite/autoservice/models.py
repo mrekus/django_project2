@@ -10,7 +10,8 @@ class AutomobilioModelis(models.Model):
                                help_text="Įveskite automobilio modelį")
 
     class Meta:
-        verbose_name_plural = 'Automobiliu modeliai'
+        verbose_name = "Automobilio modelis"
+        verbose_name_plural = 'Automobilių modeliai'
 
     def __str__(self):
         return f"{self.marke} {self.modelis}"
@@ -29,10 +30,11 @@ class Automobilis(models.Model):
                                 max_length=200)
 
     class Meta:
+        verbose_name = "Automobilis"
         verbose_name_plural = 'Automobiliai'
 
     def __str__(self):
-        return f"{self.valstybinis_nr}"
+        return f"{self.klientas} {self.valstybinis_nr}"
 
 
 class Uzsakymas(models.Model):
@@ -46,7 +48,8 @@ class Uzsakymas(models.Model):
                              max_length=200)
 
     class Meta:
-        verbose_name_plural = 'Uzsakymai'
+        verbose_name = "Užsakymas"
+        verbose_name_plural = 'Užsakymai'
 
     def __str__(self):
         return f"{self.data} {self.automobilis_id}"
@@ -65,7 +68,8 @@ class UzsakymoEilute(models.Model):
                               max_length=200)
 
     class Meta:
-        verbose_name_plural = 'Uzsakymo eilutes'
+        verbose_name = "Užsakymo eilutė"
+        verbose_name_plural = 'Užsakymų eilutės'
 
     def __str__(self):
         return f"{self.uzsakymas_id} - {self.paslauga_id} - {self.kiekis}"
@@ -77,6 +81,7 @@ class Paslauga(models.Model):
     kaina = models.FloatField("Kaina")
 
     class Meta:
+        verbose_name = "Paslauga"
         verbose_name_plural = 'Paslaugos'
 
     def __str__(self):
