@@ -47,6 +47,17 @@ class Uzsakymas(models.Model):
     suma = models.FloatField("Suma",
                              max_length=200)
 
+    UZSAKYMO_STATUS = (
+        ("p", "Priimtas"),
+        ("v", "Vykdomas"),
+        ("i", "Įvykdytas"),
+        ("a", "Atmestas")
+    )
+
+    status = models.CharField(
+        max_length=1, choices=UZSAKYMO_STATUS, blank=True, default="p", help_text="Statusas"
+    )
+
     class Meta:
         verbose_name = "Užsakymas"
         verbose_name_plural = 'Užsakymai'
