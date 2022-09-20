@@ -8,68 +8,162 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AutomobilioModelis',
+            name="AutomobilioModelis",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('marke', models.CharField(help_text='Įveskite automobilio markę', max_length=50, verbose_name='Markė')),
-                ('modelis', models.CharField(help_text='Įveskite automobilio modelį', max_length=50, verbose_name='Modelis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "marke",
+                    models.CharField(
+                        help_text="Įveskite automobilio markę",
+                        max_length=50,
+                        verbose_name="Markė",
+                    ),
+                ),
+                (
+                    "modelis",
+                    models.CharField(
+                        help_text="Įveskite automobilio modelį",
+                        max_length=50,
+                        verbose_name="Modelis",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Automobiliu modeliai',
+                "verbose_name_plural": "Automobiliu modeliai",
             },
         ),
         migrations.CreateModel(
-            name='Automobilis',
+            name="Automobilis",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('valstybinis_nr', models.CharField(max_length=7, verbose_name='Valstybinis_NR')),
-                ('VIN_kodas', models.CharField(help_text='Įveskite VIN kodą', max_length=200, verbose_name='VIN_kodas')),
-                ('klientas', models.CharField(max_length=200, verbose_name='Klientas')),
-                ('automobilio_modelis_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='autoservice.automobiliomodelis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "valstybinis_nr",
+                    models.CharField(max_length=7, verbose_name="Valstybinis_NR"),
+                ),
+                (
+                    "VIN_kodas",
+                    models.CharField(
+                        help_text="Įveskite VIN kodą",
+                        max_length=200,
+                        verbose_name="VIN_kodas",
+                    ),
+                ),
+                ("klientas", models.CharField(max_length=200, verbose_name="Klientas")),
+                (
+                    "automobilio_modelis_id",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="autoservice.automobiliomodelis",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Automobiliai',
+                "verbose_name_plural": "Automobiliai",
             },
         ),
         migrations.CreateModel(
-            name='Paslauga',
+            name="Paslauga",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('pavadinimas', models.CharField(max_length=200, verbose_name='Pavadinimas')),
-                ('kaina', models.IntegerField(verbose_name='Kaina')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "pavadinimas",
+                    models.CharField(max_length=200, verbose_name="Pavadinimas"),
+                ),
+                ("kaina", models.IntegerField(verbose_name="Kaina")),
             ],
             options={
-                'verbose_name_plural': 'Paslaugos',
+                "verbose_name_plural": "Paslaugos",
             },
         ),
         migrations.CreateModel(
-            name='Uzsakymas',
+            name="Uzsakymas",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('data', models.DateField(blank=True, null=True, verbose_name='Data')),
-                ('suma', models.CharField(max_length=200, verbose_name='Suma')),
-                ('automobilis_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='autoservice.automobilis')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("data", models.DateField(blank=True, null=True, verbose_name="Data")),
+                ("suma", models.CharField(max_length=200, verbose_name="Suma")),
+                (
+                    "automobilis_id",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="autoservice.automobilis",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Uzsakymai',
+                "verbose_name_plural": "Uzsakymai",
             },
         ),
         migrations.CreateModel(
-            name='UzsakymoEilute',
+            name="UzsakymoEilute",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('kiekis', models.CharField(max_length=200, verbose_name='Kiekis')),
-                ('kaina', models.CharField(max_length=200, verbose_name='Kaina')),
-                ('paslauga_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='autoservice.paslauga')),
-                ('uzsakymas_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='autoservice.uzsakymas')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("kiekis", models.CharField(max_length=200, verbose_name="Kiekis")),
+                ("kaina", models.CharField(max_length=200, verbose_name="Kaina")),
+                (
+                    "paslauga_id",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="autoservice.paslauga",
+                    ),
+                ),
+                (
+                    "uzsakymas_id",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="autoservice.uzsakymas",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Uzsakymo eilutes',
+                "verbose_name_plural": "Uzsakymo eilutes",
             },
         ),
     ]

@@ -6,53 +6,73 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('autoservice', '0001_initial'),
+        ("autoservice", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='automobiliomodelis',
-            options={'verbose_name': 'Automobilio modelis', 'verbose_name_plural': 'Automobilių modeliai'},
+            name="automobiliomodelis",
+            options={
+                "verbose_name": "Automobilio modelis",
+                "verbose_name_plural": "Automobilių modeliai",
+            },
         ),
         migrations.AlterModelOptions(
-            name='automobilis',
-            options={'verbose_name': 'Automobilis', 'verbose_name_plural': 'Automobiliai'},
+            name="automobilis",
+            options={
+                "verbose_name": "Automobilis",
+                "verbose_name_plural": "Automobiliai",
+            },
         ),
         migrations.AlterModelOptions(
-            name='paslauga',
-            options={'verbose_name': 'Paslauga', 'verbose_name_plural': 'Paslaugos'},
+            name="paslauga",
+            options={"verbose_name": "Paslauga", "verbose_name_plural": "Paslaugos"},
         ),
         migrations.AlterModelOptions(
-            name='uzsakymas',
-            options={'verbose_name': 'Užsakymas', 'verbose_name_plural': 'Užsakymai'},
+            name="uzsakymas",
+            options={"verbose_name": "Užsakymas", "verbose_name_plural": "Užsakymai"},
         ),
         migrations.AlterModelOptions(
-            name='uzsakymoeilute',
-            options={'verbose_name': 'Užsakymo eilutė', 'verbose_name_plural': 'Užsakymų eilutės'},
+            name="uzsakymoeilute",
+            options={
+                "verbose_name": "Užsakymo eilutė",
+                "verbose_name_plural": "Užsakymų eilutės",
+            },
         ),
         migrations.AddField(
-            model_name='uzsakymas',
-            name='status',
-            field=models.CharField(blank=True, choices=[('p', 'Priimtas'), ('v', 'Vykdomas'), ('i', 'Įvykdytas'), ('a', 'Atmestas')], default='p', help_text='Statusas', max_length=1),
+            model_name="uzsakymas",
+            name="status",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("p", "Priimtas"),
+                    ("v", "Vykdomas"),
+                    ("i", "Įvykdytas"),
+                    ("a", "Atmestas"),
+                ],
+                default="p",
+                help_text="Statusas",
+                max_length=1,
+            ),
         ),
         migrations.AlterField(
-            model_name='paslauga',
-            name='kaina',
-            field=models.FloatField(verbose_name='Kaina'),
+            model_name="paslauga",
+            name="kaina",
+            field=models.FloatField(verbose_name="Kaina"),
         ),
         migrations.AlterField(
-            model_name='uzsakymas',
-            name='suma',
-            field=models.FloatField(max_length=200, verbose_name='Suma'),
+            model_name="uzsakymas",
+            name="suma",
+            field=models.FloatField(max_length=200, verbose_name="Suma"),
         ),
         migrations.AlterField(
-            model_name='uzsakymoeilute',
-            name='kaina',
-            field=models.FloatField(max_length=200, verbose_name='Kaina'),
+            model_name="uzsakymoeilute",
+            name="kaina",
+            field=models.FloatField(max_length=200, verbose_name="Kaina"),
         ),
         migrations.AlterField(
-            model_name='uzsakymoeilute',
-            name='kiekis',
-            field=models.IntegerField(max_length=200, verbose_name='Kiekis'),
+            model_name="uzsakymoeilute",
+            name="kiekis",
+            field=models.IntegerField(max_length=200, verbose_name="Kiekis"),
         ),
     ]
