@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container car">
+    <h4 style="font-size: 40px; margin: 50px">{{ car_info.klientas }} {{ car_info.automobilio_modelis_id }} {{ car_info.valstybinis_nr }} {{ car_info.VIN_kodas }}</h4>
+    <hr>
+    <br>
+    <h5 style="font-size: 26px">Šiam automobiliui užsakytos paslaugos:</h5>
+    {% for i in paslauga.uzsakymoeilute.all %}
+    <ul>
+        <li><span class="text-wrapper">{{ i.paslauga_id }} - Kiekis: {{ i.kiekis }} Kaina: {{ i.kaina }}</span></li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}

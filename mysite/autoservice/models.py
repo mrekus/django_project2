@@ -67,8 +67,10 @@ class Uzsakymas(models.Model):
 
 class UzsakymoEilute(models.Model):
     paslauga_id = models.ForeignKey("Paslauga", on_delete=models.SET_NULL, null=True)
-    uzsakymas_id = models.ForeignKey("Uzsakymas", on_delete=models.SET_NULL, null=True)
-    kiekis = models.IntegerField("Kiekis", max_length=200)
+    uzsakymas_id = models.ForeignKey(
+        "Uzsakymas", on_delete=models.SET_NULL, null=True, related_name="uzsakymoeilute"
+    )
+    kiekis = models.IntegerField("Kiekis")
     kaina = models.FloatField("Kaina", max_length=200)
 
     class Meta:

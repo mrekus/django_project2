@@ -10,8 +10,14 @@ li::marker {
     font-size: 26px;
     }
 
-.col-sm-10
-    h1 {
+.sidebar-nav {
+    display: flex;
+    margin-top: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+.cars h1 {
     color: #d54d7b;
     font-family: "Great Vibes", cursive;
     font-size: 165px;
@@ -23,7 +29,7 @@ li::marker {
     text-shadow: 0 1px 1px #fff;
     }
 
-    p {
+.cars p {
     color: #333333;
     font-family: Georgia, serif;
     font-size: 40px;
@@ -31,29 +37,23 @@ li::marker {
     margin: 0 0 28px 20px;
     }
 
-.sidebar-nav {
-    display: flex;
-    margin-top: 15px;
-    padding: 0;
-    list-style: none;
-}
-
-a {
-  background-color: red;
+.sidebar-nav a {
+  font-size: 25px;
+  background-color: #008080;
   color: white;
   padding: 1em 1.5em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-a:hover {
+.sidebar-nav a:hover {
   background-color: #FFBFB6;
 }
 
-a:active {
+.sidebar-nav a:active {
   background-color: black;
 }
 
-a:hover {
+.sidebar-nav a:hover {
   cursor: pointer;
 }
