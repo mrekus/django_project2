@@ -30,3 +30,30 @@ li::marker {
     line-height: 28px;
     margin: 0 0 28px 20px;
     }
+
+.sidebar-nav {
+    display: flex;
+    margin-top: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+  background-color: red;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  background-color: #FFBFB6;
+}
+
+a:active {
+  background-color: black;
+}
+
+a:hover {
+  cursor: pointer;
+}

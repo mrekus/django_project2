@@ -12,3 +12,9 @@ def index(request):
         "num_automobiliai": num_automobiliai,
     }
     return render(request, "index.html", context=kontext)
+
+
+def cars(request):
+    automobiliai = Automobilis.objects.all()
+    kontext = {"automobiliai": automobiliai}
+    return render(request, "cars.html", context=kontext)
