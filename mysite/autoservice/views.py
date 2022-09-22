@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.core.paginator import Paginator
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
 
 
@@ -16,8 +17,10 @@ def index(request):
 
 
 def cars(request):
-    automobiliai = Automobilis.objects.all()
-    kontext = {"automobiliai": automobiliai}
+    paginator = Paginator(Automobilis.objects.all(), 1)
+    page_number = request.GET.get("page")
+    paged_cars = paginator.get_page(page_number)
+    kontext = {"automobiliai": paged_cars}
     return render(request, "cars.html", context=kontext)
 
 
@@ -31,6 +34,7 @@ def car(request, car_id):
 
 class OrdersListView(generic.ListView):
     model = Uzsakymas
+    paginate_by = 2
     template_name = "order_list.html"
 
 

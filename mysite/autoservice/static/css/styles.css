@@ -10,14 +10,8 @@ li::marker {
     font-size: 26px;
     }
 
-.sidebar-nav {
-    margin-left: -35px;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    text-align: center;
-    width: 200px;
+.page-item.active .page-link {
+  background: #008080;
 }
 
 .cars h1 {
@@ -39,6 +33,16 @@ li::marker {
     line-height: 28px;
     margin: 0 0 28px 20px;
     }
+
+.sidebar-nav {
+    margin-left: -35px;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-align: center;
+    width: 200px;
+}
 
 .sidebar-nav a {
     display: inline-block;

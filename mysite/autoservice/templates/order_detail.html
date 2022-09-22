@@ -3,7 +3,11 @@
 <div class="cars">
 <p style="margin-top: 200px">{{ uzsakymas.automobilis_id }}</p>
 <p>Užsakymo data: {{ uzsakymas.data }}</p>
-<p>Automobilis: <a href="{% url 'car' uzsakymas.automobilis_id.pk %}"> {{ uzsakymas.automobilis_id }}</a></p>
+<p>Automobilis:
+    <a href="{% url 'car' uzsakymas.automobilis_id.pk %}">
+        {{ uzsakymas.automobilis_id }}
+    </a>
+</p>
 <p>Užsakymo suma: {{ uzsakymas.suma }}</p>
 <p>Suteiktos paslaugos:</p>
 {% for i in uzsakymas.uzsakymoeilute.all %}
