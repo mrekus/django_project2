@@ -12,6 +12,12 @@ li::marker {
 
 .page-item.active .page-link {
   background: #008080;
+  border-color: #008080;
+  color:black;
+}
+
+.page-link {
+  color:black;
 }
 
 .cars h1 {
