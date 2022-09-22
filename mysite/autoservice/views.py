@@ -23,7 +23,7 @@ def cars(request):
 
 def car(request, car_id):
     car_info = get_object_or_404(Automobilis, pk=car_id)
-    paslauga_info = get_object_or_404(Uzsakymas, pk=car_id)
+    paslauga_info = Uzsakymas.objects.filter(automobilis_id=car_id)
     kontext = {"car_info": car_info,
                "paslauga": paslauga_info}
     return render(request, "car.html", context=kontext)

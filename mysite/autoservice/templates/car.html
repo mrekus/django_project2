@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-<div>
-    <h1 style="font-size: 40px; margin-top: 200px"> Užsakovas: {{ car_info.klientas }}</h1>
-    <h1 style="font-size: 40px">Automobilis: {{ car_info.automobilio_modelis_id }} - {{ car_info.valstybinis_nr }} - {{ car_info.VIN_kodas }}</h1>
+<div class="cars">
+    <p style="font-size: 40px; margin-top: 200px"> Užsakovas: {{ car_info.klientas }}</p>
+    <p style="font-size: 40px">Automobilis: {{ car_info.automobilio_modelis_id }} - {{ car_info.valstybinis_nr }} - {{ car_info.VIN_kodas }}</p>
     <hr>
     <br>
-    <h1 style="font-size: 30px">Šiam automobiliui suteiktos paslaugos:</h1>
-    <br>
-    {% for i in paslauga.uzsakymoeilute.all %}
+    <p style="font-size: 30px">Šio automobilio užsakymai:</p>
+    {% for i in paslauga %}
     <ul>
-        <li><span class="text-wrapper">{{ i.paslauga_id }} - Kiekis: {{ i.kiekis }} Kaina: {{ i.kaina }}</span></li>
+        <li style="margin-left: 20px">
+            <span class="text-wrapper">
+                <a href="{% url 'orders_detail' i.id %}" style="color: #008080;">
+                    {{ i.data }} -
+                    <h3 style="display: inline;">
+                        Užsakymo statusas:
+                    </h3>
+                    <h3 style="display: inline;"
+                    class="{% if i.status == 'i' %} text-success
+                   {% elif i.status == 'a' %} text-danger
+                   {% else %} text-warning {% endif %}">
+                    {{ i.get_status_display }}
+                    </h3>
+                </a>
+            </span>
+        </li>
     </ul>
     {% endfor %}
 </div>
