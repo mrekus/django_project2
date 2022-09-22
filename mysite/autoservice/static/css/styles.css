@@ -11,10 +11,13 @@ li::marker {
     }
 
 .sidebar-nav {
-    display: flex;
-    margin-top: 15px;
-    padding: 0;
+    margin-left: -35px;
     list-style: none;
+}
+
+.sidebar-nav li {
+    text-align: center;
+    width: 200px;
 }
 
 .cars h1 {
@@ -38,24 +41,23 @@ li::marker {
     }
 
 .sidebar-nav a {
-  font-size: 25px;
-  background-color: #008080;
-  color: white;
-  padding: 1em 1.5em;
-  text-decoration: none;
-  text-transform: uppercase;
+    display: inline-block;
+    width: 250px;
+    font-size: 25px;
+    background-color: #008080;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .sidebar-nav a:hover {
-  background-color: #FFBFB6;
+    background-color: #FFBFB6;
+    cursor: pointer;
 }
 
 .sidebar-nav a:active {
-  background-color: black;
-}
-
-.sidebar-nav a:hover {
-  cursor: pointer;
+    background-color: black;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
@@ -174,7 +176,6 @@ body{
 }
 
 @keyframes animate {
-
     0%{
         transform: translateY(0) rotate(0deg);
         opacity: 1;

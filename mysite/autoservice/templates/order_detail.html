@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cars">
+<p style="margin-top: 200px">{{ uzsakymas.automobilis_id }}</p>
+<p>Užsakymo data: {{ uzsakymas.data }}</p>
+<p>Automobilis: <a href="{% url 'car' uzsakymas.automobilis_id.pk %}"> {{ uzsakymas.automobilis_id }}</a></p>
+<p>Užsakymo suma: {{ uzsakymas.suma }}</p>
+<p>Suteiktos paslaugos:</p>
+{% for i in uzsakymas.uzsakymoeilute.all %}
+<ul style="margin-left: 50px">
+    <li><span class="text-wrapper">{{ i.paslauga_id }} - Kiekis: {{ i.kiekis }} Kaina: {{ i.kaina }}</span></li>
+</ul>
+{% endfor %}
+</div>
+<div style="margin-left: 20px; margin-top: 20px">
+    <h1 style="display: inline;">Užsakymo statusas:</h1>
+    <h1 style="display: inline;"
+       class="{% if uzsakymas.status == 'i' %} text-success
+       {% elif uzsakymas.status == 'a' %} text-danger
+       {% else %} text-warning {% endif %}">
+         {{ uzsakymas.get_status_display }}
+    </h1>
+</div>
+{% endblock %}

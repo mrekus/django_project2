@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cars">
+<h1>Užsakymai</h1>
+<p style="margin-top: 60px; margin-left: -20px">Užsakymų sąrašas:</p>
+{% if uzsakymas_list %}
+<ul>
+    {% for order in uzsakymas_list %}
+    <li><span class="text-wrapper">
+        <a href="{{ order.id }}" style="color: #008080;">{{ order.automobilis_id }}</a> {{ order.data }}
+    </span></li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Užsakymų nėra</p>
+{% endif %}
+</div>
+{% endblock %}

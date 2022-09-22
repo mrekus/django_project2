@@ -32,7 +32,7 @@ class Automobilis(models.Model):
         verbose_name_plural = "Automobiliai"
 
     def __str__(self):
-        return f"{self.klientas} {self.valstybinis_nr}"
+        return f"{self.automobilio_modelis_id} {self.VIN_kodas}"
 
 
 class Uzsakymas(models.Model):

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
 
 
@@ -26,3 +27,13 @@ def car(request, car_id):
     kontext = {"car_info": car_info,
                "paslauga": paslauga_info}
     return render(request, "car.html", context=kontext)
+
+
+class OrdersListView(generic.ListView):
+    model = Uzsakymas
+    template_name = "order_list.html"
+
+
+class OrdersDetailView(generic.DetailView):
+    model = Uzsakymas
+    template_name = "order_detail.html"
