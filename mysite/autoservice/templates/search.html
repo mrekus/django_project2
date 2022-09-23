@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cars">
+<h1 style="font-size: 80px">Paieškos pagal "{{ querytxt }}" rezultatai</h1>
+<br>
+{% if cars %}
+<ul>
+    {% for car in cars %}
+    <li><span class="text-wrapper">
+        <a href="{% url 'car' car.id %}" style="color: #008080;">{{ car.automobilio_modelis_id }}</a> {{ car.valstybinis_nr }}
+    </span></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Oops. Nieko neradome :(</p>
+{% endif %}
+</div>
+{% endblock %}

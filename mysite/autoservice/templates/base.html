@@ -28,6 +28,11 @@
         <div class="col-sm-2">
         {% block sidebar %}
           <ul class="sidebar-nav">
+            <li>
+            <form style="margin-left: 20px; width: 230px;" action="{% url 'search_link' %}" method="get">
+              <input name="query" class="form-control" type="text" placeholder="Paieška">
+            </form>
+            </li>
             <li><a href="{% url 'index' %}">Pradžia</a></li>
             <li><a href="{% url 'orders_link' %}">Užsakymai</a></li>
             <li><a href="{% url 'cars' %}">Automobiliai</a></li>

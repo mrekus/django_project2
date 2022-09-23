@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
 
 
@@ -27,9 +28,20 @@ def cars(request):
 def car(request, car_id):
     car_info = get_object_or_404(Automobilis, pk=car_id)
     paslauga_info = Uzsakymas.objects.filter(automobilis_id=car_id)
-    kontext = {"car_info": car_info,
-               "paslauga": paslauga_info}
+    kontext = {"car_info": car_info, "paslauga": paslauga_info}
     return render(request, "car.html", context=kontext)
+
+
+def search(request):
+    query_text = request.GET.get("query")
+    search_results = Automobilis.objects.filter(
+        Q(valstybinis_nr__icontains=query_text)
+        | Q(VIN_kodas__icontains=query_text)
+        | Q(klientas__icontains=query_text)
+    )
+    return render(
+        request, "search.html", {"cars": search_results, "querytxt": query_text}
+    )
 
 
 class OrdersListView(generic.ListView):
