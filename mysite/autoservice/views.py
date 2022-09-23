@@ -38,6 +38,8 @@ def search(request):
         Q(valstybinis_nr__icontains=query_text)
         | Q(VIN_kodas__icontains=query_text)
         | Q(klientas__icontains=query_text)
+        | Q(automobilio_modelis_id__modelis__icontains=query_text)
+        | Q(automobilio_modelis_id__marke__icontains=query_text)
     )
     return render(
         request, "search.html", {"cars": search_results, "querytxt": query_text}
