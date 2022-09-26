@@ -11,23 +11,40 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+{% load widget_tweaks %}
+<div class="login">
+  <div class="heading">
+    <h2>Sign in</h2>
+    <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <table style="margin-top: 50px">
-        <tr>
-            <td >Vartotojas:</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>Slaptažodis:</td>
-            <td>{{ form.password }}</td>
-        </tr>
-    </table>
-    <input type="submit" value="Prisijungti">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          {% render_field form.username placeholder=form.username.label class+="form-control"  %}
+      </div>
 
-<p>
-    <a href="{% url 'password_reset' %}">Pamiršote slaptažodį?</a>
-</p>
+        <div class="input-group input-group-lg">
+          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            {% render_field form.password placeholder=form.password.label class+="form-control"  %}
+        </div>
+
+        <button type="submit" class="float"
+                style="margin-top: 20px;
+                        background: #008080;
+                        border: none;
+                        font-size: 1.6em;
+                        font-weight: 300;
+                        padding: 5px 0;
+                        width: 100%;
+                        border-radius: 3px;
+                        color: lighten($button-background-color, 40%);
+                        border-bottom: 4px solid darken($button-background-color, 10%)">
+                Login
+        </button>
+        <input type="hidden" name="next" value="{{ next }}">
+        <p>
+            <a href="{% url 'password_reset' %}">Pamiršote slaptažodį?</a>
+        </p>
+       </form>
+    </div>
+ </div>
 {% endblock %}
