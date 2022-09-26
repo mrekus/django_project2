@@ -26,6 +26,7 @@ class Automobilis(models.Model):
         "VIN_kodas", max_length=200, help_text="Įveskite VIN kodą"
     )
     klientas = models.CharField("Klientas", max_length=200)
+    nuotrauka = models.ImageField("Nuotrauka", upload_to="auto_nuotraukos", null=True)
 
     class Meta:
         verbose_name = "Automobilis"
