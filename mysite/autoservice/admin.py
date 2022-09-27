@@ -20,7 +20,7 @@ class UzsakymasAdmin(admin.ModelAdmin):
 
 
 class AutomobilisAdmin(admin.ModelAdmin):
-    list_display = ("klientas", "automobilio_modelis_id", "valstybinis_nr", "VIN_kodas")
+    list_display = ("klientas", "automobilio_modelis_id", "valstybinis_nr", "VIN_kodas", "aprasymas")
     list_filter = ("klientas", "automobilio_modelis_id")
     search_fields = ("valstybinis_nr", "VIN_kodas")
 

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
+from tinymce.models import HTMLField
 
 
 class AutomobilioModelis(models.Model):
@@ -29,6 +30,7 @@ class Automobilis(models.Model):
     )
     klientas = models.CharField("Klientas", max_length=200)
     nuotrauka = models.ImageField("Nuotrauka", upload_to="auto_nuotraukos", null=True)
+    aprasymas = HTMLField()
 
     class Meta:
         verbose_name = "Automobilis"
