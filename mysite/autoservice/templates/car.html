@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <div class="cars">
     {% if car_info.nuotrauka %}
         <img style="max-width: 30%; height: auto; margin-top: 50px" src="{{ car_info.nuotrauka.url }}">
     {% else %}
         <img style="max-width: 30%; height: auto; margin-top: 50px" src="{% static 'img/blank.png' %}">
+    {% endif %}
     <p style="font-size: 40px; margin-top: 50px"> Užsakovas: {{ car_info.klientas }}</p>
     <p style="font-size: 40px">Automobilis: {{ car_info.automobilio_modelis_id }} - {{ car_info.valstybinis_nr }} - {{ car_info.VIN_kodas }}</p>
     <hr>
