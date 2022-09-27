@@ -36,8 +36,8 @@
               {% if user.is_authenticated %}
             <li><a href="#">
             {{ user.get_username }}</a></li>
-            <li><a href="#">Mano knygos</a></li>
-            <li><a href="{% url 'logout'%}?next=/autoservice">Atsijungti</a></li>
+            <li><a href="{% url 'my-orders' %}">Mano užsakymai</a></li>
+            <li><a href="{% url 'logout'%}">Atsijungti</a></li>
           {% else %}
             <li><a href="{% url 'login'%}?next={{request.path}}">Prisijungti</a></li>
             <li><a href="#">Registruotis</a></li>

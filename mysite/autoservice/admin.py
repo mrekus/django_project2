@@ -16,7 +16,7 @@ class UzsakymasInline(admin.TabularInline):
 
 class UzsakymasAdmin(admin.ModelAdmin):
     inlines = [UzsakymasInline]
-    list_display = ("automobilis_id", "data")
+    list_display = ("automobilis_id", "data", "vartotojas", "grazinimas")
 
 
 class AutomobilisAdmin(admin.ModelAdmin):

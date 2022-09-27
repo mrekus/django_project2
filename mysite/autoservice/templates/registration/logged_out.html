@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<p>Sėkmingai atsijungėte!</p>
-<a href="{% url 'login' %}">Prisijungti iš naujo</a>
+<div style="font-family: Georgia, serif;
+            font-size: 40px;
+            text-align: center;
+            line-height: 28px;
+            margin: 100px 0 28px 20px;">
+    <p>Sėkmingai atsijungėte!</p>
+    <a href="{% url 'login' %}">Prisijungti iš naujo</a>
+</div>
 
 {% endblock %}

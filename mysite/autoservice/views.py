@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
 
 
@@ -58,3 +59,15 @@ class OrdersListView(generic.ListView):
 class OrdersDetailView(generic.DetailView):
     model = Uzsakymas
     template_name = "order_detail.html"
+
+
+class OrdersByUserListView(LoginRequiredMixin, generic.ListView):
+    model = Uzsakymas  # konteksto kint į šabloną bookinstance_list
+    template_name = "user_orders.html"
+    paginate_by = 10
+
+    def get_queryset(self):
+        return (
+            Uzsakymas.objects.filter(vartotojas=self.request.user)
+            .order_by("grazinimas")
+        )

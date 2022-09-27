@@ -1,0 +1,19 @@
+{% extends "base.html" %}}
+{% block content %}
+
+<div class="cars">
+    <h1 style="margin-bottom: 100px">Mano užsakymai</h1>
+    {% if uzsakymas_list %}
+    <ul>
+        {% for i in uzsakymas_list %}
+        <li style="font-size: 26px;" class="{% if i.is_overdue %}text-danger{% endif %}">
+            <a style="color: #008080;" href="{% url 'orders_detail' i.id %}">{{ i.automobilis_id }}</a>
+            {{ i.grazinimas }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Jūs neturite užsakymų.</p>
+    {% endif %}
+</div>
+{% endblock %}

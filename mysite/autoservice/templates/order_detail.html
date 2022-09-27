@@ -9,6 +9,7 @@
     </a>
 </p>
 <p>Užsakymo suma: {{ uzsakymas.suma }}</p>
+    <p>Planuojama grąžinimo data: {{ uzsakymas.grazinimas }}</p>
 <p>Suteiktos paslaugos:</p>
 {% for i in uzsakymas.uzsakymoeilute.all %}
 <ul style="margin-left: 50px">

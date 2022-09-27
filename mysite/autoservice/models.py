@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from datetime import date
 
 
 class AutomobilioModelis(models.Model):
@@ -42,6 +44,7 @@ class Uzsakymas(models.Model):
         "Automobilis", on_delete=models.SET_NULL, null=True
     )
     suma = models.FloatField("Suma", max_length=200)
+    grazinimas = models.DateField("Bus įvykdyta", null=True, blank=True)
 
     UZSAKYMO_STATUS = (
         ("p", "Priimtas"),
@@ -57,6 +60,14 @@ class Uzsakymas(models.Model):
         default="p", 
         help_text="Statusas",
     )
+
+    vartotojas = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+    @property
+    def is_overdue(self):
+        if self.grazinimas and date.today() > self.grazinimas:
+            return True
+        return False
 
     class Meta:
         verbose_name = "Užsakymas"
