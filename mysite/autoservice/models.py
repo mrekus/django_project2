@@ -45,7 +45,6 @@ class Uzsakymas(models.Model):
     automobilis_id = models.ForeignKey(
         "Automobilis", on_delete=models.SET_NULL, null=True
     )
-    suma = models.FloatField("Suma", max_length=200)
     grazinimas = models.DateField("Bus įvykdyta", null=True, blank=True)
 
     UZSAKYMO_STATUS = (
@@ -71,6 +70,14 @@ class Uzsakymas(models.Model):
             return True
         return False
 
+    @property
+    def suma(self):
+        kainos = UzsakymoEilute.objects.filter(uzsakymas_id=self.id).all()
+        suma = 0
+        for i in kainos:
+            suma += i.kaina
+        return suma
+
     class Meta:
         verbose_name = "Užsakymas"
         verbose_name_plural = "Užsakymai"
@@ -85,7 +92,11 @@ class UzsakymoEilute(models.Model):
         "Uzsakymas", on_delete=models.SET_NULL, null=True, related_name="uzsakymoeilute"
     )
     kiekis = models.IntegerField("Kiekis")
-    kaina = models.FloatField("Kaina", max_length=200)
+
+    @property
+    def kaina(self):
+        kaina = self.paslauga_id.kaina * self.kiekis
+        return kaina
 
     class Meta:
         verbose_name = "Užsakymo eilutė"

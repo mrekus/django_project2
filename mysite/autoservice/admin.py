@@ -4,19 +4,20 @@ from django import forms
 
 
 # class UzsakymasInlineForm(forms.ModelForm):
-#     choice = forms.ModelChoiceField(queryset=Paslauga.objects.values_list('kaina', flat=True))
+#     kaina = forms.ModelChoiceField(queryset=Paslauga.objects.values_list('kaina', flat=True))
 
 
 class UzsakymasInline(admin.TabularInline):
     model = UzsakymoEilute
     # form = UzsakymasInlineForm
+    # readonly_fields = ("kaina",)
     can_delete = False
     extra = 0
 
 
 class UzsakymasAdmin(admin.ModelAdmin):
     inlines = [UzsakymasInline]
-    list_display = ("automobilis_id", "data", "vartotojas", "grazinimas")
+    list_display = ("automobilis_id", "data", "vartotojas", "grazinimas", "suma")
 
 
 class AutomobilisAdmin(admin.ModelAdmin):
