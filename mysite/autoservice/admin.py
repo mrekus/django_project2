@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
+from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga, UzsakymoReview
 from django import forms
 
 
@@ -30,8 +30,13 @@ class PaslaugaAdmin(admin.ModelAdmin):
     list_display = ("pavadinimas", "kaina")
 
 
+class UzsakymoReviewAdmin(admin.ModelAdmin):
+    list_display = ("uzsakymas", "date_created", "reviewer", "content")
+
+
 admin.site.register(AutomobilioModelis)
 admin.site.register(Automobilis, AutomobilisAdmin)
 admin.site.register(Uzsakymas, UzsakymasAdmin)
 admin.site.register(UzsakymoEilute)
 admin.site.register(Paslauga, PaslaugaAdmin)
+admin.site.register(UzsakymoReview, UzsakymoReviewAdmin)

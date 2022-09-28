@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="cars">
-<p style="margin-top: 200px">{{ uzsakymas.automobilis_id }}</p>
+<p style="margin-top: 50px">{{ uzsakymas.automobilis_id }}</p>
 <p>Užsakymo data: {{ uzsakymas.data }}</p>
 <p>Automobilis:
     <a href="{% url 'car' uzsakymas.automobilis_id.pk %}">
@@ -26,4 +26,37 @@
          {{ uzsakymas.get_status_display }}
     </h1>
 </div>
+<div class="cars">
+    <hr>
+    <p style="margin-top: 20px">Atsiliepimai:</p>
+    {% if uzsakymas.uzsakymoreview_set.all %}
+        {% for uzsakymas in uzsakymas.uzsakymoreview_set.all %}
+            <p style="display: inline; font-size: 32px"><strong>{{ uzsakymas.reviewer }}</strong></p><em style="font-size: 28px">, {{ uzsakymas.date_created }}</em>
+            <p style="margin-top: 20px; font-size: 25px">{{ uzsakymas.content }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Nėra atsiliepimų</p>
+    {% endif %}
+</div>
+{% if user.is_authenticated %}
+<div class="fieldWrapper"  style="height: 20px">
+    <hr>
+    <h4>Palikite atsiliepimą:</h4>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.content }}
+        <br>
+        <input type="submit"
+               value="Išsaugoti"
+               style="margin-top: 20px;
+                    background: #008080;
+                    border: none;
+                    font-size: 1.6em;
+                    font-weight: 300;
+                    padding: 5px 0;
+                    width: 16%;
+                    border-radius: 3px;">
+    </form>
+</div>
+{% endif %}
 {% endblock %}

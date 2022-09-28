@@ -86,6 +86,13 @@ class Uzsakymas(models.Model):
         return f"{self.data} {self.automobilis_id}"
 
 
+class UzsakymoReview(models.Model):
+    uzsakymas = models.ForeignKey("Uzsakymas", on_delete=models.SET_NULL, null=True)
+    reviewer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    content = models.TextField("Atsiliepimas", max_length=2000)
+
+
 class UzsakymoEilute(models.Model):
     paslauga_id = models.ForeignKey("Paslauga", on_delete=models.SET_NULL, null=True)
     uzsakymas_id = models.ForeignKey(
