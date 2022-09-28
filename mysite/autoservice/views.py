@@ -1,9 +1,13 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
+from django.contrib.auth.forms import User
+from django.views.decorators.csrf import csrf_protect
+from django.contrib import messages
+import re
 
 
 def index(request):
@@ -16,7 +20,7 @@ def index(request):
         "num_paslaugos": num_paslaugos,
         "num_ivykdyti": num_ivykdyti,
         "num_automobiliai": num_automobiliai,
-        "num_visits": num_visits
+        "num_visits": num_visits,
     }
     return render(request, "index.html", context=kontext)
 
@@ -67,7 +71,46 @@ class OrdersByUserListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return (
-            Uzsakymas.objects.filter(vartotojas=self.request.user)
-            .order_by("grazinimas")
+        return Uzsakymas.objects.filter(vartotojas=self.request.user).order_by(
+            "grazinimas"
         )
+
+
+@csrf_protect
+def register(request):
+    if request.method == "POST":
+        laukai = [
+            request.POST["username"],
+            request.POST["email"],
+            request.POST["password"],
+            request.POST["password2"],
+        ]
+        username, email, password, password2 = laukai
+        if all(laukai):
+            if password == password2:
+                if re.match(r"[A-Za-z\d]{8,}", password):
+                    if User.objects.filter(username=username).exists():
+                        messages.error(request, f"Vartotojo vardas {username} užimtas!")
+                        return redirect("register")
+                    else:
+                        if User.objects.filter(email=email).exists():
+                            messages.error(
+                                request,
+                                f"Vartotojas su el. paštu {email} jau užregistruotas!",
+                            )
+                            return redirect("register")
+                        else:
+                            User.objects.create_user(
+                                username=username, email=email, password=password
+                            )
+                            messages.success(request, f"Vartotojas {username} sukurtas!")
+                else:
+                    messages.error(request, f"Slaptažodis per silpnas!")
+                    return redirect("register")
+            else:
+                messages.error(request, f"Slaptažodžiai nesutampa!")
+                return redirect("register")
+        else:
+            messages.error(request, f"Yra neužpildytų laukų!")
+            return redirect("register")
+    return render(request, "register.html")

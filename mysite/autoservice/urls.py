@@ -8,5 +8,6 @@ urlpatterns = [
     path("orders/", views.OrdersListView.as_view(), name="orders_link"),
     path("orders/<int:pk>", views.OrdersDetailView.as_view(), name="orders_detail"),
     path("search/", views.search, name="search_link"),
-    path("myorders/", views.OrdersByUserListView.as_view(), name="my-orders")
+    path("myorders/", views.OrdersByUserListView.as_view(), name="my-orders"),
+    path("register/", views.register, name="register")
 ]
