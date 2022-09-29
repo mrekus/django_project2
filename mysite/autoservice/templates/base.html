@@ -34,7 +34,7 @@
             </form>
             </li>
               {% if user.is_authenticated %}
-            <li><a href="#">
+            <li><a href="{% url 'profile' %}">
             {{ user.get_username }}</a></li>
             <li><a href="{% url 'my-orders' %}">Mano užsakymai</a></li>
             <li><a href="{% url 'logout'%}">Atsijungti</a></li>

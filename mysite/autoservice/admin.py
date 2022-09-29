@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga, UzsakymoReview
+from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga, UzsakymoReview, Profilis
 from django import forms
 
 
@@ -40,3 +40,4 @@ admin.site.register(Uzsakymas, UzsakymasAdmin)
 admin.site.register(UzsakymoEilute)
 admin.site.register(Paslauga, PaslaugaAdmin)
 admin.site.register(UzsakymoReview, UzsakymoReviewAdmin)
+admin.site.register(Profilis)

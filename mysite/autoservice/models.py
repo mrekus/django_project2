@@ -123,3 +123,11 @@ class Paslauga(models.Model):
 
     def __str__(self):
         return self.pavadinimas
+
+
+class Profilis(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nuotrauka = models.ImageField(default="blank.png", upload_to="profile_pics")
+
+    def __str__(self):
+        return f"{self.user.username} profilis"
