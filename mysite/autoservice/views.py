@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import AutomobilioModelis, Automobilis, Uzsakymas, UzsakymoEilute, Paslauga
-from .forms import UzsakymoReviewForm
+from .forms import UzsakymoReviewForm, ProfilisUpdateForm, UserUpdateForm
 from django.contrib.auth.forms import User
 from django.views.decorators.csrf import csrf_protect
 from django.contrib import messages
@@ -142,4 +142,19 @@ def register(request):
 
 @login_required
 def profile(request):
-    return render(request, "profile.html")
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfilisUpdateForm(request.POST, request.FILES, instance=request.user.profilis)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, "Profilis atnaujintas")
+            return redirect("profile")
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfilisUpdateForm(instance=request.user.profilis)
+    context = {
+        "u_form": u_form,
+        "p_form": p_form
+    }
+    return render(request, "profile.html", context=context)

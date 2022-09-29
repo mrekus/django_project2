@@ -3,6 +3,7 @@
 
 <div class="cars">
     <h1 style="margin-bottom: 100px">Mano užsakymai</h1>
+    <img class="rounded-circle" style="margin-bottom: 20px" src="{{ user.profilis.nuotrauka.url }}">
     {% if uzsakymas_list %}
     <ul>
         {% for i in uzsakymas_list %}
